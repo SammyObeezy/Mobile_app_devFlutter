@@ -44,7 +44,7 @@ class _CurrencyConverterMaterialPageState
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              result.toString(),
+              'KSHS $result',
               style: const TextStyle(
                 fontSize: 45,
                 fontWeight: FontWeight.bold,
@@ -85,7 +85,7 @@ class _CurrencyConverterMaterialPageState
               child: TextButton(
                 onPressed: () {
                   setState(() {
-                    result = double.parse(textEditingController.text) * 81;
+                    result = double.parse(textEditingController.text) * 125;
                   });
                 },
                 style: TextButton.styleFrom(
