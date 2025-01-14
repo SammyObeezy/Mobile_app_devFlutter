@@ -17,6 +17,18 @@ class _CurrencyConverterMaterialPageState
   double result = 0;
   final TextEditingController textEditingController = TextEditingController();
 
+  void convert() {
+    setState(() {
+      result = double.parse(textEditingController.text) * 125;
+    });
+  }
+
+  @override
+  void dispose() {
+    textEditingController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     print('rebuild');
@@ -40,22 +52,22 @@ class _CurrencyConverterMaterialPageState
         centerTitle: true,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'KSHS $result',
-              style: const TextStyle(
-                fontSize: 45,
-                fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 255, 255, 255),
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'KSHS ${result != 0 ? result.toStringAsFixed(2) : result.toStringAsFixed(0)}',
+                style: const TextStyle(
+                  fontSize: 45,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 255, 255, 255),
+                ),
               ),
-            ),
-            //padding
-            // container
-            Container(
-              padding: const EdgeInsets.all(10.0),
-              child: TextField(
+              //padding
+              // container
+              TextField(
                 controller: textEditingController,
                 style: const TextStyle(
                   color: Colors.black,
@@ -75,19 +87,12 @@ class _CurrencyConverterMaterialPageState
                 keyboardType: const TextInputType.numberWithOptions(
                   decimal: true,
                 ),
+              ), // Placed properly inside the children list
+              const SizedBox(
+                height: 10,
               ),
-            ), // Placed properly inside the children list
-            //button
-            //raised
-            //appears like a text
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: TextButton(
-                onPressed: () {
-                  setState(() {
-                    result = double.parse(textEditingController.text) * 125;
-                  });
-                },
+              TextButton(
+                onPressed: convert,
                 style: TextButton.styleFrom(
                   backgroundColor: Colors.black,
                   foregroundColor: Colors.white,
@@ -97,9 +102,9 @@ class _CurrencyConverterMaterialPageState
                   ),
                 ),
                 child: const Text('Convert'),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

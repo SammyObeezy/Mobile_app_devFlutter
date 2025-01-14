@@ -1,8 +1,10 @@
+import 'package:currency_converter/currency_converter_cupertino.dart';
 import 'package:currency_converter/currency_converter_material_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MyCupertinoApp());
 }
 
 // Widgets describe what the app is doing, the app function is a widget passed to run App. For most cases a UI element
@@ -23,6 +25,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: CurrencyConverterMaterialPage(),
+    );
+  }
+}
+
+class MyCupertinoApp extends StatelessWidget {
+  const MyCupertinoApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const CupertinoApp(
+      home: CurrencyConverterCupertinoPage(),
     );
   }
 }
