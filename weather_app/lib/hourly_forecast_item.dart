@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
 class HourlyForecastItem extends StatelessWidget {
-  const HourlyForecastItem({Key? key}) : super(key: key);
+  final String time;
+  final String temperature;
+  final IconData icon;
+  const HourlyForecastItem({
+    super.key,
+    required this.time,
+    required this.temperature,
+    required this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,23 +21,23 @@ class HourlyForecastItem extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
         ),
-        child: const Column(
+        child: Column(
           children: [
             Text(
-              "03:00",
-              style: TextStyle(
+              time,
+              style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Icon(
-              Icons.cloud,
+              icon,
               size: 32,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
-              "320.12",
+              temperature,
             ),
           ],
         ),
